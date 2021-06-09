@@ -1,0 +1,58 @@
+=begin pod
+
+=NAME   Game::Stats 
+=AUTHOR The Holy Ghost 
+=VERSION 0.2
+
+=head1 Description
+
+This is a minimal statistics package built for games, it 
+approximates several algorithms for speed
+
+=head2 Population.pm6 and DistributionPopulation.pm6
+
+A Population is a list handle, wrapper to which you can add probabilities,
+using the method add($x) and accessing using nth($index).
+
+It can be used to calculate functions on experiments in the Population.
+
+Expectance() and Variance() functions can be called upon a 
+DistributionPopulation which has a Population superclass.
+
+Expectance calculates the mean of the DistributionPopulation, the Variance
+the variance on them.
+
+=head3 Covariance.pm6 and Correlation.pm6
+
+Specific classes which are built using 2 Distributionpopulation superclasses 
+through Covariance($xpop, $ypop) and Correlation($xpop, $ypop).
+
+=head4 Probability.pm6
+
+The superclass is a DistributionPopulation, methods are :
+
+P($index) gives the nth chance in the population.
+
+Pand($index, $pbconda), P(a) and P(b|a), independant experiments
+
+Por($index0, $index1, $pbconda), P(a) or P(b|a) 
+
+Porp($index0, $p, $pbconda), as above
+
+CondP($index0, $pbconda), conditional chance, P(b|a), given $pbconda
+
+CalculatedCondP($index0, $n), iterative method for conditional chance
+
+Sometimes P(A|B) = P(A), so ($pbconda and self.P($index) == 1.0)
+A and B are disjoint in CondPInd($index0).
+
+Bayes(@indices, @pbconda, $n),
+@indices are the indices in @pbconda, $n is the index of the fixed chance.
+Exact method for multi variate Bayes function.
+
+=head5 End notes
+
+Most things should be clear from a math point of view. Any statistics
+book should give you the data needed to understand the above functionality.
+
+=end pod 
